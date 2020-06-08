@@ -1,0 +1,17 @@
+Research and analyze which of the vulnerabilities appear to be related to the code that was deployed for the environment in this project.
+
+
+For the AttackInstanceSG:
+Ensure no security groups allow ingress from 0.0.0.0/0 to port 22 to block access to the instance via SSH over the internet
+
+For the WebAppSG:
+Ensure no security groups allow ingress from 0.0.0.0/0 to port 22/3389 to block access to the instance via SSH or RDP over the internet
+
+In general it is a best security practice to ensure that the default security group of every VPC restricts all traffic by default.
+Only ports and traffic should be allowed that are required for functionality (comparable to least privilege approach)
+
+
+Bonus - provide recommendations on how to remediate the vulnerabilities.
+
+Make usage of specific IP-Addresses or ranges that are allowed for connections (e.g. public IP of Admin only).
+This ensure attackers cannot gain access to the machine/instance even if the compromised access keys or credentials.

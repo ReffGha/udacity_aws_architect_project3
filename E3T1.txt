@@ -1,0 +1,13 @@
+# Describe GuardDuty findings that were detected related to the brute force attack
+
+AWS GuardDuty had 2 specific findings in context of SSH brute forcing:
+First that one of my instances was being "used" to perform an SSH brute force attack on another instance (low severity).
+And second that one of my instances was being "attacked" by an SSH brute force attack (high severity)
+
+# Research the AWS Guard Duty documentation page and explain how GuardDuty may have detected this attack - i.e. what was its source of information.
+
+From official AWS documentation:
+Amazon GuardDuty is a continuous security monitoring service that analyzes and processes data from VPC Flow Logs, AWS CloudTrail event logs, and DNS logs.
+The details for this attack have be found in the "VPC flow logs" that are being written to S3 (one of the non-recipe buckets we created in the first exercise).
+Those log files show a large amount of requests being sent from the one instance to a specific IP indicating that the instance is being used for an SSH brute force attack.
+The logs will also show a large amount of requests sent to the instance from a specific IP indicating that this specific instance is being attacked by a SSH brute force attack.

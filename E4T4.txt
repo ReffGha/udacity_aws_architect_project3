@@ -1,0 +1,16 @@
+
+# What additional architectural change can be made to reduce the internet facing attack surface of the web application instance.
+First, remove all external access to the instances. 
+Then configure AWS Systems Manager and require any ssh to the instances be done through it (bastion host like configuration).
+
+
+# Assuming the IAM permissions for the S3 bucket are still insecure, would creating VPC private endpoints for S3 prevent the unauthorized access to the secrets bucket.
+If IAM permissions are not changed, VPC endpoints alone would not prevent any unauthorized access to the secret recipes S3bucket.
+
+# Will applying default encryption setting to the s3 buckets encrypt the data that already exists?
+No, when activation the default encryption a message pops up that informs that all data available will not be encrypted in retrospective. 
+This means only files added after default encryption activation will be encrypted.
+
+# What would happen if the original cloud formation templates are applied to this environment.
+CloudFormation is an Infrastructure-as-Code tool that uses a descriptive language. It defines the "final" state of the environment.
+This means that all changes that have been made manually would be reverted back to the state that is described in the cloudformation template.

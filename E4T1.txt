@@ -1,0 +1,21 @@
+
+
+# Identify 2-3 changes that can be made to our environment to prevent an ssh brute force attack from the internet.
+
+#1
+Restrict network traffic that can reach the application server via security groups and ACLs
+#2
+Configure SSH passwordless login on application server (only allowing Key-based authentication)
+#3
+Change the port where the SSH daemon (sshd) listens to a different port (not 22)
+#....
+Use a bastion host only for access, install tools that block access (block IP Address) after too many tries, only allow access from specific IPs
+
+
+# Neither instance should have had access to the secret recipes bucket, in the event that instance API credentials were compromised how could we have prevented access to sensitive data.
+
+The best way to prevent access to the data in case of API compromisation is to have data encryption enabled. 
+In that case even stolen data cannot be read without having the decryption key.
+
+Another idea on how to achieve this is to cut off permissions of the IAM role c3-app-InstanceRole-BMUWXF8OYLV5 to only have access to specific (non secret) buckets.
+Current configuration allows ALL Access to ALL Buckets.

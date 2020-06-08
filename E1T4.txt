@@ -1,0 +1,16 @@
+Based on the architecture diagram, and the steps you have taken so far to upload data and access the application web service, identify at least 2 obvious poor practices as it relates to security.  Include justification.
+
+# Poor practice 1
+
+There are no restrictive ACL rules configured, thus all traffic is allowed (on all ports from all ports) for public and private subnets. 
+
+Network ACL rules should be used to minimise the available network connectivity to reduce the traffic that can be sent to and from the subnet. 
+A network access control list (ACL) is an optional layer of security within a VPC that acts as a firewall for controlling traffic that flows in and out of one or more subnets. 
+This will shrink the attack surface and the ability for malicious actions that canbe performed. This allows to keep the private subnet (and its contents) private.
+
+# Poor practice 2
+
+All created S3 buckets (including the bucket for VPC flow logs) have no server-side encryption enabled.
+All files were uploaded without initial encryption and all the buckets have block public access disabled.
+Without encryption and public access, it might be easy for attackers to gain access to the bucket contents. 
+Furthermore the vpc-flow-logs may contain information that could help attackers to gain even more inisghts to further compromise the infrastructure if any security flaws are detected.
